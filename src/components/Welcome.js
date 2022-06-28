@@ -1,3 +1,4 @@
+import { WelcomeDishItem } from './WelcomeDishItem';
 export const Welcome = (props) => {
     return (<section id="gtco-welcome" className="bg-white section-padding">
         <div className="container">
@@ -25,24 +26,9 @@ export const Welcome = (props) => {
                                 roasted parts of sentences fly into your mouth.</p>
                             <h3 className="mt-5">Special Recipe</h3>
                             <div className="row">
-                                <div className="col-4">
-                                    <a href="google.com" className="thumb-menu">
-                                        <img className="img-fluid img-cover" src="img/hero-1.jpg" alt="#" />
-                                        <h6>Australian Organic Beef</h6>
-                                    </a>
-                                </div>
-                                <div className="col-4">
-                                    <a href="google.com" className="thumb-menu">
-                                        <img className="img-fluid img-cover" src="img/hero-1.jpg" alt="#" />
-                                        <h6>Australian Organic Beef</h6>
-                                    </a>
-                                </div>
-                                <div className="col-4">
-                                    <a href="google.com" className="thumb-menu">
-                                        <img className="img-fluid img-cover" src="img/hero-1.jpg" alt="#" />
-                                        <h6>Australian Organic Beef</h6>
-                                    </a>
-                                </div>
+                                <WelcomeDishItem src="img/hero-1.jpg" />
+                                <WelcomeDishItem src="img/hero-2.jpg" />
+                                <WelcomeDishItem src="img/hero-3.jpg" />
                             </div>
                         </div>
                     </div>
