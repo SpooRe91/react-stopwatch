@@ -1,30 +1,34 @@
-import './App.css';
 import { NavBar } from "./components/Navbar";
-import { SideNavSearch } from "./components/SideNav";
-import { Welcome } from "./components/Welcome";
-import { Specials } from "./components/Specials";
-import { CanvasOverlay } from './components/CanvasOverlay';
+import { Login } from "./components/Login";
+// import { SideNavSearch } from "./components/SideNav";
+// import { Welcome } from "./components/Welcome";
+// import { Specials } from "./components/Specials";
+// import { CanvasOverlay } from './components/CanvasOverlay';
 import { Menu } from './components/Menu';
-import { Testimonials } from "./components/Testimonials";
-import { TeamSection } from "./components/TeamSection";
-import { Reservation } from "./components/Reservation";
-import { Footer } from "./components/Footer";
+// import { Testimonials } from "./components/Testimonials";
+// import { TeamSection } from "./components/TeamSection";
+// import { Reservation } from "./components/Reservation";
+// import { Footer } from "./components/Footer";
+// import { Register } from "./components/Register";
+// import { About } from "./components/About/About";
 
 function App() {
+
   return (
     <div>
-      {/* <body data-spy="scroll" data-target="#navbar" class="static-layout"> */}
-        <NavBar />
-        <SideNavSearch />
-        <CanvasOverlay />
-        <Welcome />
-        <Specials />
-        <Menu />
-        <Testimonials />
-        <TeamSection />
-        <Reservation />
-        <Footer />
-      {/* </body> */}
+      <NavBar />
+      <Login />
+      {/* <Register /> */}
+      {/* <About />  */}
+      <Menu />
+      {/* <SideNavSearch /> */}
+      {/* <CanvasOverlay /> */}
+      {/* <Welcome /> */}
+      {/* <Specials /> */}
+      {/* <Testimonials /> */}
+      {/* <TeamSection /> */}
+      {/* <Reservation /> */}
+      {/* <Footer /> */}
     </div >
   );
 }
