@@ -29,7 +29,10 @@ export const MealItem = (props) => {
             </div>
 
             <button onClick={clickHandler} name="buy">
-                Total:${priceOfMeals} Orders:{numberMeals} {numberMeals === 10 && "Max. count reached!"}
+                {numberMeals === 10
+                    ? `Max. count reached! Total: $${priceOfMeals} Orders: ${numberMeals} pcs.`
+                    : `Total: $${priceOfMeals} Orders: ${numberMeals} pcs.`
+                }
             </button>
             <button onClick={clearHandler} name="clear">Clear counter</button>
         </div>);
