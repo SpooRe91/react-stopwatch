@@ -1,52 +1,57 @@
-import { MenuItem } from "./MenuItem";
+import { useState } from "react";
+import { MealItem } from "./MealItem/MealItem";
 
 export const Menu = () => {
+
+    let breakfast = useState(
+        [{ name: "Eggs", price: 30 },
+        { name: "Pasta", price: 45 },
+        { name: "Fish", price: 43 }]);
+
+    let [breakfastState, setBreakfast] = breakfast;
+
+    //-------------------//
+    let lunch = useState(
+        [{ name: "Soup", price: 30 },
+        { name: "Beef", price: 45 },
+        { name: "Chicken", price: 43 }]);
+    //-------------------//
+
+    let [lunchState, setLunch] = lunch;
+
+    //-------------------//
+    let dinner = useState(
+        [{ name: "Veggie", price: 30 },
+        { name: "Lasagna", price: 45 },
+        { name: "Steak", price: 43 }]);
+
+    let [dinnerState, setDinner] = dinner;
+
     return (
-        <section id="gtco-menu" className="section-padding">
+        <section id="gtco-menu" className="already-reg">
             <div className="container">
-                <div className="section-content">
-                    <div className="row mb-5">
-                        <div className="col-md-12">
-                            <div className="heading-section text-center">
-                                <span className="subheading">
-                                    Specialties
-                                </span>
-                                <h2>
-                                    Our Menu
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-lg-4 menu-wrap">
-                            <div className="heading-menu">
-                                <h3 className="text-center mb-5">Breakfast</h3>
-                            </div>
-
-                            <MenuItem src="img/breakfast-1.jpg" />
-
-                        </div>
-
-                        <div className="col-lg-4 menu-wrap">
-                            <div className="heading-menu">
-                                <h3 className="text-center mb-5">Breakfast</h3>
-                            </div>
-
-                            <MenuItem src="img/breakfast-1.jpg" />
-
-                        </div>
-
-                        <div className="col-lg-4 menu-wrap">
-                            <div className="heading-menu">
-                                <h3 className="text-center mb-5">Breakfast</h3>
-                            </div>
-
-                            <MenuItem src="img/breakfast-1.jpg" />
-
-                        </div>
-                    </div>
-                </div>
+                <span className="subheading">
+                    Specialties
+                </span>
+                <h2>
+                    Our Menu
+                </h2>
             </div>
-        </section>
+
+            <div className="row">
+                <h3 className="text-center mb-5">Breakfast</h3>
+                {breakfastState.map(el => <MealItem src="img/hero-1.jpg" >{el}</MealItem>)}
+            </div>
+
+            <div className="col-lg-4 menu-wrap">
+                <h3 className="text-center mb-5">Lunch</h3>
+                {lunchState.map(el => <MealItem src="img/hero-2.jpg" >{el}</MealItem>)};
+            </div>
+
+            <div className="col-lg-4 menu-wrap">
+                <h3 className="text-center mb-5">Dinner</h3>
+                {dinnerState.map(el => <MealItem src="img/hero-3.jpg">{el}</MealItem>)};
+            </div>
+        </section >
     );
 }
