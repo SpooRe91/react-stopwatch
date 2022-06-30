@@ -3,6 +3,7 @@ import { MealItem } from "./MealItem/MealItem";
 
 export const Menu = () => {
 
+
     let breakfast = useState(
         [{ name: "Eggs", price: 30 },
         { name: "Pasta", price: 45 },
@@ -45,12 +46,12 @@ export const Menu = () => {
 
             <div className="col-lg-4 menu-wrap">
                 <h3 className="text-center mb-5">Lunch</h3>
-                {lunchState.map(el => <MealItem src="img/hero-2.jpg" >{el}</MealItem>)};
+                {lunchState.map(el => <MealItem src="img/hero-2.jpg" >{el}</MealItem>)}
             </div>
 
             <div className="col-lg-4 menu-wrap">
                 <h3 className="text-center mb-5">Dinner</h3>
-                {dinnerState.map(el => <MealItem src="img/hero-3.jpg">{el}</MealItem>)};
+                {dinnerState.map(el => <MealItem src="img/hero-3.jpg">{el}</MealItem>)}
             </div>
         </section >
     );
