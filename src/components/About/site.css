@@ -1,0 +1,123 @@
+body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    /* list-style: none; */
+    background-image: url(../../../public/img/main-background.jpg);
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: center;
+    align-items: center;
+}
+
+.already-reg a {
+    margin-top: 15px;
+    display: flex;
+    transition: .1s;
+    color: #DECBA4;
+    text-transform: uppercase;
+    text-align: left;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+div.already-reg a:hover {
+
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    transition: .1s;
+    /* background-image: linear-gradient(to right, #DECBA4, #3E5151); */
+    text-decoration: underline;
+}
+
+.already-reg a:hover {
+    cursor: pointer;
+    border-radius: 35%;
+    transition: .1s;
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+}
+
+.already-reg {
+    transition: .1s;
+    margin: 5px;
+    display: flex;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.already-reg h1 {
+    width: fit-content;
+    display: flex;
+    border: ridge rgb(211 198 181);
+    font-weight: bold;
+    background: none;
+    color: white;
+    margin: auto;
+    text-align: center;
+    text-transform: inherit;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.already-reg img {
+    margin-top: 20px;
+    display: inline-block;
+    transition: .1s;
+    text-shadow: -3px 1px 3px rgb(240 203 123);
+    text-decoration: underline;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    text-align: left;
+    border-radius: 50%;
+}
+
+.already-reg img:hover {
+    box-shadow: 0px 0px 20px 2px #ffffff91;
+    cursor: pointer;
+    display: flex;
+    transition: .1s;
+}
+
+h1 {
+    border: ridge rgb(211 198 181);
+    border-radius: 15%;
+    font-weight: bold;
+    background-color: rgb(177, 163, 142);
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+.already-reg-error {
+    font-size: 20px;
+    color: red;
+    animation: hideAnimation 0s ease-in 5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hideAnimation {
+    to {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+}
