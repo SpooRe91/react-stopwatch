@@ -9,7 +9,7 @@ export const Menu = () => {
         { name: "Pasta", price: 45 },
         { name: "Fish", price: 43 }]);
 
-    let [breakfastState, setBreakfast] = breakfast;
+    let [breakfastState, /*setBreakfast*/] = breakfast;
 
     //-------------------//
     let lunch = useState(
@@ -18,7 +18,7 @@ export const Menu = () => {
         { name: "Chicken", price: 43 }]);
     //-------------------//
 
-    let [lunchState, setLunch] = lunch;
+    let [lunchState, /*setLunch*/] = lunch;
 
     //-------------------//
     let dinner = useState(
@@ -26,7 +26,7 @@ export const Menu = () => {
         { name: "Lasagna", price: 45 },
         { name: "Steak", price: 43 }]);
 
-    let [dinnerState, setDinner] = dinner;
+    let [dinnerState, /*setDinner*/] = dinner;
 
     return (
         <section id="gtco-menu" className="already-reg">
