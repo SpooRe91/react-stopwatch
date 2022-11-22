@@ -7,7 +7,6 @@ export const StopWatchComp = () => {
     const [now, setNow] = useState(null);
     const [isActive, setIsactive] = useState(false);
     const [messageVisible, setMessageVisible] = useState(false);
-    const [status, setStatus] = useState(null);
 
     const intervalRef = useRef(null);
     const statusRef = useRef(null);
@@ -18,7 +17,6 @@ export const StopWatchComp = () => {
         if (startTime !== null && now !== null) {
             secondsPassed = (now - startTime) / 1000;
         }
-        setStatus(state => "Start");
         setMessageVisible(state => !state);
         setStartTime(Date.now());
         setNow(Date.now());
@@ -31,7 +29,6 @@ export const StopWatchComp = () => {
     };
 
     const handleStop = () => {
-        setStatus(state => "Stop");
         setMessageVisible(state => !state);
         clearInterval(intervalRef.current);
         statusRef.current = 'Stop';
@@ -40,7 +37,6 @@ export const StopWatchComp = () => {
     const handleClear = () => {
         clearInterval(intervalRef.current);
 
-        setStatus(state => "Clear");
         setMessageVisible(state => !state);
         setNow(state => null);
         setStartTime(state => null);
@@ -63,27 +59,30 @@ export const StopWatchComp = () => {
     return (
         <section>
             <div className={styles["container"]}>
-                {
-                    status !== null &&
-                    messageVisible &&
-                    <div className={styles["message"]}>
-                        {
-                            status === "Start" &&
-                            <p className={styles["message-start"]}>TIMER STARTED</p>
-                        }
-                        {
-                            status === "Stop" &&
-                            <p className={styles["message-stop"]}> TIMER STOPPED</p>
-                        }
-                        {
-                            status === "Clear" &&
-                            <p className={styles["message-clear"]}> TIMER CLEARED</p>
-                        }
-                    </div>
-                }
+
                 <div className={styles["time"]}>
                     <h1 className={styles["current-time"]}>Time:</h1>
                     <p className={styles["time-passed"]}> {secondsPassed.toFixed(3)}</p>
+                    <div className={styles["message-container"]}>
+                        {
+                            statusRef.current !== null &&
+                            messageVisible &&
+                            <div className={styles["message"]}>
+                                {
+                                    statusRef.current === "Start" &&
+                                    <p className={styles["message-start"]}>TIMER RUNNING</p>
+                                }
+                                {
+                                    statusRef.current === "Stop" &&
+                                    <p className={styles["message-stop"]}> TIMER STOPPED</p>
+                                }
+                                {
+                                    statusRef.current === "Clear" &&
+                                    <p className={styles["message-clear"]}> TIMER CLEARED</p>
+                                }
+                            </div>
+                        }
+                    </div>
                 </div>
                 <div className={styles["buttons-container"]}>
                     <button className={styles["start"]} disabled={statusRef.current === "Start"} onClick={() => handleStart()}>
