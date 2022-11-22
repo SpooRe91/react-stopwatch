@@ -10,13 +10,13 @@ export const StopWatchComp = () => {
 
     const intervalRef = useRef(null);
     const statusRef = useRef(null);
+
     let secondsPassed = 0;
+    let minsPassed = 0;
+    let hrsPassed = 0;
 
 
     const handleStart = () => {
-        if (startTime !== null && now !== null) {
-            secondsPassed = (now - startTime) / 1000;
-        }
         setMessageVisible(state => !state);
         setStartTime(Date.now());
         setNow(Date.now());
@@ -36,18 +36,19 @@ export const StopWatchComp = () => {
 
     const handleClear = () => {
         clearInterval(intervalRef.current);
-
         setMessageVisible(state => !state);
+
         setNow(state => null);
         setStartTime(state => null);
         intervalRef.current = null;
-
         statusRef.current = 'Clear';
     };
 
-
     if (startTime !== null && now !== null) {
-        secondsPassed = (now - startTime) / 1000;
+        secondsPassed = ((now - startTime) / 1000).toFixed(3);
+        minsPassed = Math.floor(secondsPassed / 60).toFixed(0);
+        hrsPassed = Math.floor(minsPassed / 60).toFixed(0);
+
     }
 
     if (messageVisible) {
@@ -61,8 +62,18 @@ export const StopWatchComp = () => {
             <div className={styles["container"]}>
 
                 <div className={styles["time"]}>
-                    <h1 className={styles["current-time"]}>Time:</h1>
-                    <p className={styles["time-passed"]}> {secondsPassed.toFixed(3)}</p>
+                    <h1 className={styles["current-time"]}>Time elapsed:
+                        {
+                            !isActive &&
+                            <p>
+                                {hrsPassed} {hrsPassed < 1 ? "hr" : "hrs"} : {minsPassed} {minsPassed <= 1 ? "min" : "mins"} : {secondsPassed !== null && secondsPassed} sec
+                            </p>
+                        }
+                    </h1>
+                    {
+                        isActive &&
+                        <p className={styles["time-passed"]}> {secondsPassed}</p>
+                    }
                     <div className={styles["message-container"]}>
                         {
                             statusRef.current !== null &&
@@ -97,9 +108,14 @@ export const StopWatchComp = () => {
                         }
                     </button>
                     <button className={styles["stop"]} disabled={!isActive} onClick={() => [handleStop(), setIsactive(sate => false)]}>Stop</button>
-                    <button className={styles["clear"]} disabled={isActive} onClick={() => handleClear()}>Clear</button>
+                    {
+                        !isActive &&
+                        <button className={styles["clear"]} disabled={now === null} onClick={() => handleClear()}>Clear</button>
+                    }
                 </div>
             </div>
+
+            <div></div>
         </section >
     );
 }

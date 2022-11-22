@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+@media (prefers-reduced-motion: smooth) {
+    html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        min-width: 320px;
+    }
+}
+
+body {
+    background-image: url("../../public/images/8083-black-texture.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'PT Sans', sans-serif;
+}
