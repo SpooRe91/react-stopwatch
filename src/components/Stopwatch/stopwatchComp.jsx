@@ -15,7 +15,6 @@ export const StopWatchComp = () => {
     let minsPassed = 0;
     let hrsPassed = 0;
 
-
     const handleStart = () => {
         setMessageVisible(state => !state);
         setStartTime(Date.now());
