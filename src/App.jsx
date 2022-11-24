@@ -1,7 +1,7 @@
 import './css/style.css'
 import './css/ResetCSS.css'
+import { StopWatchComp } from './Components/Stopwatch/stopwatchComp';
 
-import { StopWatchComp } from "./components/Stopwatch/stopwatchComp";
 
 function App() {
 
