@@ -53,11 +53,31 @@ export const StopWatchComp = () => {
     if (messageVisible) {
         setTimeout(() => {
             setMessageVisible(state => false);
-        }, 250);
+        }, 500);
     }
 
     return (
         <section>
+            <div className={styles["message-container"]}>
+                {
+                    statusRef.current !== null &&
+                    messageVisible &&
+                    <div className={styles["message"]}>
+                        {
+                            statusRef.current === "Start" &&
+                            <p className={styles["message-start"]}>TIMER RUNNING</p>
+                        }
+                        {
+                            statusRef.current === "Stop" &&
+                            <p className={styles["message-stop"]}> TIMER STOPPED</p>
+                        }
+                        {
+                            statusRef.current === "Clear" &&
+                            <p className={styles["message-clear"]}> TIMER CLEARED</p>
+                        }
+                    </div>
+                }
+            </div>
             <div className={styles["container"]}>
 
                 <div className={styles["time"]}>
@@ -65,7 +85,7 @@ export const StopWatchComp = () => {
                         {
                             !isActive &&
                             <p>
-                                {hrsPassed} {hrsPassed < 1 ? "hr" : "hrs"} : {minsPassed} {minsPassed <= 1 ? "min" : "mins"} : {secondsPassed !== null && secondsPassed} sec
+                                {hrsPassed} {hrsPassed < 1 ? "hr" : "hrs"} : {minsPassed} {minsPassed <= 1 ? "min" : "mins"} : {secondsPassed !== null ? secondsPassed : null} sec
                             </p>
                         }
                     </h1>
@@ -73,26 +93,7 @@ export const StopWatchComp = () => {
                         isActive &&
                         <p className={styles["time-passed"]}> {secondsPassed}</p>
                     }
-                    <div className={styles["message-container"]}>
-                        {
-                            statusRef.current !== null &&
-                            messageVisible &&
-                            <div className={styles["message"]}>
-                                {
-                                    statusRef.current === "Start" &&
-                                    <p className={styles["message-start"]}>TIMER RUNNING</p>
-                                }
-                                {
-                                    statusRef.current === "Stop" &&
-                                    <p className={styles["message-stop"]}> TIMER STOPPED</p>
-                                }
-                                {
-                                    statusRef.current === "Clear" &&
-                                    <p className={styles["message-clear"]}> TIMER CLEARED</p>
-                                }
-                            </div>
-                        }
-                    </div>
+
                 </div>
                 <div className={styles["buttons-container"]}>
                     <button className={styles["start"]} disabled={statusRef.current === "Start"} onClick={() => handleStart()}>
@@ -108,8 +109,13 @@ export const StopWatchComp = () => {
                     </button>
                     <button className={styles["stop"]} disabled={!isActive} onClick={() => [handleStop(), setIsactive(sate => false)]}>Stop</button>
                     {
-                        !isActive &&
-                        <button className={styles["clear"]} disabled={now === null} onClick={() => handleClear()}>Clear</button>
+                        !isActive
+                            ?
+                            now !== null
+                                ? <button className={styles["clear"]} disabled={now === null} onClick={() => handleClear()}>Clear</button>
+                                : null
+                            :
+                            null
                     }
                 </div>
             </div>

@@ -1,6 +1,10 @@
+section {
+    position: relative;
+}
+
 .container {
     display: flex;
-    width: 100%;
+    width: 750px;
     max-width: 50%;
     min-width: 500px;
     margin: 5rem auto;
@@ -126,6 +130,8 @@
 
 .message-container {
     width: 100%;
+    position: fixed;
+    left: 50%;
 }
 
 .message {
