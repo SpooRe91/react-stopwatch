@@ -107,6 +107,7 @@ export const StopWatchComp = () => {
                                 "Start"
                         }
                     </button>
+
                     <button className={styles["stop"]} disabled={!isActive} onClick={() => [handleStop(), setIsactive(sate => false)]}>Stop</button>
                     {
                         !isActive
