@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import styles from "./stopwatch.module.css";
 
-export const StopWatchComp = () => {
+export const StopwatchComponent = () => {
 
     const [startTime, setStartTime] = useState(null);
     const [now, setNow] = useState(null);
@@ -58,45 +58,54 @@ export const StopWatchComp = () => {
 
     return (
         <section>
-            <div className={styles["message-container"]}>
+            <div role='message-container' className={styles["message-container"]}>
                 {
-                    statusRef.current !== null &&
-                    messageVisible &&
-                    <div className={styles["message"]}>
-                        {
-                            statusRef.current === "Start" &&
-                            <p className={styles["message-start"]}>TIMER RUNNING</p>
-                        }
-                        {
-                            statusRef.current === "Stop" &&
-                            <p className={styles["message-stop"]}> TIMER STOPPED</p>
-                        }
-                        {
-                            statusRef.current === "Clear" &&
-                            <p className={styles["message-clear"]}> TIMER CLEARED</p>
-                        }
-                    </div>
+                    statusRef.current !== null
+                        ?
+                        messageVisible
+                            ?
+                            <div role="message" className={styles["message"]}>
+                                {
+                                    statusRef.current === "Start" ?
+                                        <p className={styles["message-start"]}>TIMER RUNNING</p>
+                                        : null
+                                }
+                                {
+                                    statusRef.current === "Stop" ?
+                                        <p className={styles["message-stop"]}>TIMER STOPPED</p>
+                                        : null
+                                }
+                                {
+                                    statusRef.current === "Clear" ?
+                                        <p className={styles["message-clear"]}>TIMER CLEARED</p>
+                                        : null
+                                }
+                            </div>
+                            : null
+                        : null
                 }
             </div>
-            <div className={styles["container"]}>
+            <div role='container' className={styles["container"]}>
 
                 <div className={styles["time"]}>
                     <h1 className={styles["current-time"]}>Time elapsed:
                         {
-                            !isActive &&
-                            <p>
-                                {hrsPassed} {hrsPassed < 1 ? "hr" : "hrs"} : {minsPassed} {minsPassed <= 1 ? "min" : "mins"} : {secondsPassed !== null ? secondsPassed : null} sec
-                            </p>
+                            !isActive ?
+                                <p>
+                                    {hrsPassed} {hrsPassed < 1 ? "hr" : "hrs"} : {minsPassed} {minsPassed <= 1 ? "min" : "mins"} : {secondsPassed !== null ? secondsPassed : null} sec
+                                </p>
+                                : null
                         }
                     </h1>
                     {
-                        isActive &&
-                        <p className={styles["time-passed"]}> {secondsPassed}</p>
+                        isActive
+                            ? <p className={styles["time-passed"]}> {secondsPassed}</p>
+                            : null
                     }
 
                 </div>
-                <div className={styles["buttons-container"]}>
-                    <button className={styles["start"]} disabled={statusRef.current === "Start"} onClick={() => handleStart()}>
+                <div role="buttons-container" className={styles["buttons-container"]}>
+                    <button role='start' className={styles["start"]} disabled={statusRef.current === "Start"} onClick={() => handleStart()}>
                         {
                             now !== null
                                 ?
@@ -108,20 +117,18 @@ export const StopWatchComp = () => {
                         }
                     </button>
 
-                    <button className={styles["stop"]} disabled={!isActive} onClick={() => [handleStop(), setIsactive(sate => false)]}>Stop</button>
+                    <button role='stop' className={styles["stop"]} disabled={!isActive} onClick={() => [handleStop(), setIsactive(sate => false)]}>Stop</button>
                     {
                         !isActive
                             ?
                             now !== null
-                                ? <button className={styles["clear"]} disabled={now === null} onClick={() => handleClear()}>Clear</button>
+                                ? <button role='clear' className={styles["clear"]} disabled={now === null} onClick={() => handleClear()}>Clear</button>
                                 : null
                             :
                             null
                     }
                 </div>
             </div>
-
-            <div></div>
-        </section >
+        </section>
     );
 }

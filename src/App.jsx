@@ -1,13 +1,14 @@
 import './css/style.css'
 import './css/ResetCSS.css'
-import { StopWatchComp } from './components/Stopwatch/stopwatchComp';
+import { StopwatchComponent } from './components/Stopwatch/StopWatchComponent';
 
 
-function App() {
+
+export function App() {
 
   return (
     <main>
-      <StopWatchComp />
+      <StopwatchComponent />
     </main>
   );
 }
