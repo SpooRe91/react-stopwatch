@@ -19,31 +19,31 @@ describe('Rendering the "StopwatchComponent"', () => {
 describe('Checking for elements', () => {
     test('it should render div with class "container"', () => {
         render(<StopwatchComponent />);
-        expect(screen.getByRole('container')).toBeInTheDocument();
+        expect(screen.getByTestId('container')).toBeInTheDocument();
     });
 
     test('it should render div with class "buttons-container"', () => {
         render(<StopwatchComponent />);
-        expect(screen.getByRole('buttons-container')).toBeInTheDocument();
+        expect(screen.getByTestId('buttons-container')).toBeInTheDocument();
     });
 
     test('it should render button with class "start"', () => {
         render(<StopwatchComponent />);
-        expect(screen.getByRole('start')).toBeInTheDocument();
+        expect(screen.getByTestId('start')).toBeInTheDocument();
     });
 
     test('it should render button with class "stop"', () => {
         render(<StopwatchComponent />);
-        expect(screen.getByRole('stop')).toBeInTheDocument();
+        expect(screen.getByTestId('stop')).toBeInTheDocument();
     });
 
     test('it should render button with class "clear"', () => {
         render(<StopwatchComponent />);
 
-        fireEvent.click(screen.getByRole('start'));
-        fireEvent.click(screen.getByRole('stop'));
+        fireEvent.click(screen.getByTestId('start'));
+        fireEvent.click(screen.getByTestId('stop'));
 
-        expect(screen.getByRole('clear')).toBeInTheDocument();
+        expect(screen.getByTestId('clear')).toBeInTheDocument();
     });
 });
 
@@ -52,16 +52,16 @@ describe('TIMER MESSAGES', () => {
     test('the "TIMER RUNNING" text should appear after clicking "START"', () => {
         render(<StopwatchComponent />);
 
-        fireEvent.click(screen.getByRole('start'));
+        fireEvent.click(screen.getByTestId('start'));
         expect(screen.getByText("TIMER RUNNING")).toBeInTheDocument();
     });
 
     test('the "TIMER STOPPED" text should appear after clicking "STOP"', () => {
         render(<StopwatchComponent />);
 
-        fireEvent.click(screen.getByRole('start'));
+        fireEvent.click(screen.getByTestId('start'));
         setTimeout(() => {
-            fireEvent.click(screen.getByRole('stop'));
+            fireEvent.click(screen.getByTestId('stop'));
             expect(screen.getByText("TIMER STOPPED")).toBeInTheDocument();
         }, 600);
 
@@ -70,9 +70,9 @@ describe('TIMER MESSAGES', () => {
     test('the "TIMER CLEARED" text should appear after clicking "CLEAR"', () => {
         render(<StopwatchComponent />);
 
-        fireEvent.click(screen.getByRole('start'));
-        fireEvent.click(screen.getByRole('stop'));
-        fireEvent.click(screen.getByRole('clear'));
+        fireEvent.click(screen.getByTestId('start'));
+        fireEvent.click(screen.getByTestId('stop'));
+        fireEvent.click(screen.getByTestId('clear'));
 
         expect(screen.getByText("TIMER CLEARED")).toBeInTheDocument();
     });
@@ -82,23 +82,23 @@ describe('BUTTON SIGNS', () => {
 
     test('the "Restart" button should appear after clicking "STOP"', () => {
         render(<StopwatchComponent />);
-        fireEvent.click(screen.getByRole('start'));
-        fireEvent.click(screen.getByRole('stop'));
+        fireEvent.click(screen.getByTestId('start'));
+        fireEvent.click(screen.getByTestId('stop'));
         expect(screen.getByText("Restart")).toBeInTheDocument();
     });
 
     test('the "Clear" button should appear after clicking "STOP"', () => {
         render(<StopwatchComponent />);
-        fireEvent.click(screen.getByRole('start'));
-        fireEvent.click(screen.getByRole('stop'));
+        fireEvent.click(screen.getByTestId('start'));
+        fireEvent.click(screen.getByTestId('stop'));
         expect(screen.getByText("Clear")).toBeInTheDocument();
     });
 
     test('the "Clear" button should disappear after clicking "CLEAR"', () => {
         render(<StopwatchComponent />);
-        fireEvent.click(screen.getByRole('start'));
-        fireEvent.click(screen.getByRole('stop'));
-        const clear = screen.getByRole("clear");
+        fireEvent.click(screen.getByTestId('start'));
+        fireEvent.click(screen.getByTestId('stop'));
+        const clear = screen.getByTestId("clear");
 
         fireEvent.click(clear);
         expect(clear).not.toBeInTheDocument()

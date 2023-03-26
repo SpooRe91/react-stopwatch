@@ -58,13 +58,13 @@ export const StopwatchComponent = () => {
 
     return (
         <section>
-            <div role='message-container' className={styles["message-container"]}>
+            <div data-testid="message-container" className={styles["message-container"]}>
                 {
                     statusRef.current !== null
                         ?
                         messageVisible
                             ?
-                            <div role="message" className={styles["message"]}>
+                            <div data-testid="message" className={styles["message"]}>
                                 {
                                     statusRef.current === "Start" ?
                                         <p className={styles["message-start"]}>TIMER RUNNING</p>
@@ -85,7 +85,7 @@ export const StopwatchComponent = () => {
                         : null
                 }
             </div>
-            <div role='container' className={styles["container"]}>
+            <div data-testid='container' className={styles["container"]}>
 
                 <div className={styles["time"]}>
                     <h1 className={styles["current-time"]}>Time elapsed:
@@ -104,8 +104,8 @@ export const StopwatchComponent = () => {
                     }
 
                 </div>
-                <div role="buttons-container" className={styles["buttons-container"]}>
-                    <button role='start' className={styles["start"]} disabled={statusRef.current === "Start"} onClick={() => handleStart()}>
+                <div data-testid="buttons-container" className={styles["buttons-container"]}>
+                    <button data-testid='start' className={styles["start"]} disabled={statusRef.current === "Start"} onClick={() => handleStart()}>
                         {
                             now !== null
                                 ?
@@ -117,12 +117,12 @@ export const StopwatchComponent = () => {
                         }
                     </button>
 
-                    <button role='stop' className={styles["stop"]} disabled={!isActive} onClick={() => [handleStop(), setIsactive(sate => false)]}>Stop</button>
+                    <button data-testid='stop' className={styles["stop"]} disabled={!isActive} onClick={() => [handleStop(), setIsactive(sate => false)]}>Stop</button>
                     {
                         !isActive
                             ?
                             now !== null
-                                ? <button role='clear' className={styles["clear"]} disabled={now === null} onClick={() => handleClear()}>Clear</button>
+                                ? <button data-testid='clear' className={styles["clear"]} disabled={now === null} onClick={() => handleClear()}>Clear</button>
                                 : null
                             :
                             null
