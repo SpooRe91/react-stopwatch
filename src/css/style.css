@@ -20,3 +20,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     font-family: 'PT Sans', sans-serif;
 }
+
+main{
+    width:100%;
+}
