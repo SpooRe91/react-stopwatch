@@ -14,8 +14,9 @@
     "react-dom": "*",
     "react-icons": "*",
     "react-scripts": "*",
-    "semver": "*",
+    "semver": "^7.5.4",
     "terser": "*",
+    "tough-cookie": "^4.1.3",
     "web-vitals": "*",
     "webpack": "*"
   },
