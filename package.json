@@ -18,7 +18,8 @@
     "terser": "*",
     "tough-cookie": "^4.1.3",
     "web-vitals": "*",
-    "webpack": "*"
+    "webpack": "*",
+    "word-wrap": "^1.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
