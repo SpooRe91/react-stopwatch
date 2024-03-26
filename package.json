@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@adobe/css-tools": "^4.3.3",
+    "@babel/traverse": "^7.24.1",
+    "express": "^4.19.2",
+    "follow-redirects": "^1.15.6",
     "googleapis": "*",
     "json-bigint": "*",
     "json5": "*",
@@ -10,6 +14,7 @@
     "minimatch": "*",
     "node-forge": "*",
     "nth-check": "*",
+    "postcss": "^8.4.38",
     "react": "*",
     "react-dom": "*",
     "react-icons": "*",
