@@ -123,3 +123,4 @@ export const StopwatchComponent = () => {
         </section>
     );
 };
+export default StopwatchComponent;
