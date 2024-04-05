@@ -33,6 +33,9 @@ export const StopwatchComponent = () => {
     };
 
     const handleStop = () => {
+        if (elapsedTime === 0) {
+            return;
+        }
         statusRef.current = "Stop";
         setMessageVisible(!messageVisible);
         setIsActive(false);
