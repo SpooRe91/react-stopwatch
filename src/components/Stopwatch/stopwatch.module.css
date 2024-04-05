@@ -19,21 +19,20 @@ section {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     padding: 1rem;
-    gap: 3rem;
     border: 1px solid coral;
     border-bottom: none;
     height: 170px;
+    text-align: center;
 }
 
-.time .current-time {
-    text-align: left;
+.current-time,
+.current-time-mobile {
     font-size: 2rem;
     color: lightcoral;
-
     text-shadow: -1px 0px 5px #030303, 0px 0px 5px lightcoral;
 }
 
-.time .time-passed {
+.time-passed {
     color: coral;
     font-size: 2rem;
     font-weight: bold;
@@ -44,7 +43,8 @@ section {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1rem;
+    padding: 5px 10px;
     background: #464646;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -53,7 +53,8 @@ section {
     justify-content: center;
 }
 
-.buttons-container .start {
+.buttons-container .start,
+.buttons-container-mobile .start {
     padding: 5px 20px;
     font-size: 2rem;
     color: green;
@@ -65,20 +66,23 @@ section {
     margin: 0.5rem;
 }
 
-.buttons-container .start:hover {
+.buttons-container .start:hover,
+.buttons-container-mobile .start:hover {
     cursor: pointer;
     text-shadow: -1px 0px 1px #000000, 0px 0px 20px rgb(255, 255, 255);
     color: green;
     border: 1px solid white;
 }
 
-.buttons-container .start:active {
+.buttons-container .start:active,
+.buttons-container-mobile .start:active {
     transition: all ease-in-out 0ms;
     color: rgb(255, 255, 255);
     background-color: green;
 }
 
-.buttons-container .stop {
+.buttons-container .stop,
+.buttons-container-mobile .stop {
     padding: 5px 20px;
     font-size: 2rem;
     color: red;
@@ -90,20 +94,23 @@ section {
     margin: 0.5rem;
 }
 
-.buttons-container .stop:hover {
+.buttons-container .stop:hover,
+.buttons-container-mobile .stop:hover {
     cursor: pointer;
     text-shadow: -1px 0px 1px #000000, 0px 0px 20px rgb(255, 255, 255);
     color: red;
     border: 1px solid white;
 }
 
-.buttons-container .stop:active {
+.buttons-container .stop:active,
+.buttons-container-mobile .stop:active {
     transition: all ease-in-out 0ms;
     color: rgb(255, 255, 255);
     background-color: red;
 }
 
-.buttons-container .clear {
+.buttons-container .clear,
+.buttons-container-mobile .clear {
     padding: 5px 20px;
     font-size: 2rem;
     color: lightblue;
@@ -115,43 +122,108 @@ section {
     margin: 0.5rem;
 }
 
-.buttons-container .clear:hover {
+.buttons-container .clear:hover,
+.buttons-container-mobile .clear:hover {
     cursor: pointer;
     text-shadow: -1px 0px 1px #000000, 0px 0px 20px rgb(255, 255, 255);
     color: lightblue;
     border: 1px solid white;
 }
 
-.buttons-container .clear:active {
+.buttons-container .clear:active,
+.buttons-container-mobile .clear:active {
     transition: all ease-in-out 0ms;
     color: rgb(255, 255, 255);
     background-color: lightblue;
 }
 
-.message-container {
-    width: 100%;
-    position: fixed;
-    left: 50%;
+/* MOBILE */
+
+.container-mobile {
+    display: flex;
+    width: 75%;
+    max-width: 500px;
+    min-width: 300px;
+    margin: 5rem auto;
+    box-shadow: 0px 1px 2px 0px white, 0px -1px 3px 0px coral;
+    border-radius: 10px;
+    flex-wrap: wrap;
 }
 
-.message {
+.time-mobile {
     width: 100%;
+    background-color: #333333;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 1rem;
+    border: 1px solid coral;
+    border-bottom: none;
+    height: 170px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.message p {
+.buttons-container-mobile {
+    width: 100%;
+    display: flex;
+    background: #464646;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid coral;
+    border-top: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons-inner-container-mobile {
+    display: flex;
+    gap: 2rem;
+    min-width: 320px;
+    padding: 4px 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons-inner-container-mobile .start {
+    width: 50px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 2rem;
-    width: 100%;
-    display: inline-block;
-}
-
-.message .message-start {
     color: green;
+    background: transparent;
+    text-shadow: -1px 0px 1px #030303, 0px 0px 5px green;
+    transition: all ease-in-out 200ms;
+    margin: 0.5rem;
 }
 
-.message .message-stop {
+.buttons-inner-container-mobile .stop {
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 1cqw;
+    font-size: 2rem;
     color: red;
+    background: transparent;
+    text-shadow: -1px 0px 1px #030303, 0px 0px 5px red;
+    transition: all ease-in-out 200ms;
+    margin: 0.5rem;
 }
 
-.message .message-clear {
+.buttons-inner-container-mobile .clear {
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    font-size: 2rem;
     color: lightblue;
+    background: transparent;
+    text-shadow: -1px 0px 1px #030303, 0px 0px 5px rgb(71, 71, 71);
+    transition: all ease-in-out 200ms;
+    margin: 0.5rem;
 }

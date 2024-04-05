@@ -1,134 +1,112 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styles from "./stopwatch.module.css";
+import useHandleScreenResize from "../../hooks/useScreenResize";
+import { PlayArrow, Stop, Clear } from "@mui/icons-material";
 
 export const StopwatchComponent = () => {
-
-    const [startTime, setStartTime] = useState(null);
-    const [now, setNow] = useState(null);
-    const [isActive, setIsactive] = useState(false);
+    const [elapsedTime, setElapsedTime] = useState(0);
+    const [isActive, setIsActive] = useState(false);
     const [messageVisible, setMessageVisible] = useState(false);
+
+    const { isBelowTreshold } = useHandleScreenResize();
 
     const intervalRef = useRef(null);
     const statusRef = useRef(null);
 
-    let secondsPassed = 0;
-    let minsPassed = 0;
-    let hrsPassed = 0;
+    useEffect(() => {
+        let intervalId;
+
+        if (isActive) {
+            intervalId = setInterval(() => {
+                setElapsedTime((prevElapsedTime) => prevElapsedTime + 10);
+            }, 10);
+        } else {
+            clearInterval(intervalRef.current);
+        }
+
+        return () => clearInterval(intervalId);
+    }, [isActive]);
 
     const handleStart = () => {
-        setMessageVisible(state => !state);
-        setStartTime(Date.now());
-        setNow(Date.now());
-        setIsactive(state => !state);
-
-        statusRef.current = 'Start';
-        intervalRef.current = setInterval(() => {
-            setNow(Date.now());
-        }, 10);
+        setMessageVisible(!messageVisible);
+        setIsActive(true);
     };
 
     const handleStop = () => {
-        setMessageVisible(state => !state);
-        clearInterval(intervalRef.current);
-        statusRef.current = 'Stop';
+        statusRef.current = "Stop";
+        setMessageVisible(!messageVisible);
+        setIsActive(false);
     };
 
     const handleClear = () => {
+        statusRef.current = null;
         clearInterval(intervalRef.current);
-        setMessageVisible(state => !state);
-
-        setNow(state => null);
-        setStartTime(state => null);
-        intervalRef.current = null;
-        statusRef.current = 'Clear';
+        setMessageVisible(!messageVisible);
+        setIsActive(false);
+        setElapsedTime(0);
     };
-
-    if (startTime !== null && now !== null) {
-        secondsPassed = ((now - startTime) / 1000).toFixed(3);
-        minsPassed = Math.floor(secondsPassed / 60).toFixed(0);
-        hrsPassed = Math.floor(minsPassed / 60).toFixed(0);
-
-    }
-
-    if (messageVisible) {
-        setTimeout(() => {
-            setMessageVisible(state => false);
-        }, 500);
-    }
 
     return (
         <section>
-            <div data-testid="message-container" className={styles["message-container"]}>
-                {
-                    statusRef.current !== null
-                        ?
-                        messageVisible
-                            ?
-                            <div data-testid="message" className={styles["message"]}>
-                                {
-                                    statusRef.current === "Start" ?
-                                        <p className={styles["message-start"]}>TIMER RUNNING</p>
-                                        : null
-                                }
-                                {
-                                    statusRef.current === "Stop" ?
-                                        <p className={styles["message-stop"]}>TIMER STOPPED</p>
-                                        : null
-                                }
-                                {
-                                    statusRef.current === "Clear" ?
-                                        <p className={styles["message-clear"]}>TIMER CLEARED</p>
-                                        : null
-                                }
-                            </div>
-                            : null
-                        : null
-                }
-            </div>
-            <div data-testid='container' className={styles["container"]}>
-
-                <div className={styles["time"]}>
-                    <h1 className={styles["current-time"]}>Time elapsed:
-                        {
-                            !isActive ?
-                                <p>
-                                    {hrsPassed} {hrsPassed < 1 ? "hr" : "hrs"} : {minsPassed} {minsPassed <= 1 ? "min" : "mins"} : {secondsPassed !== null ? secondsPassed : null} sec
-                                </p>
-                                : null
-                        }
+            <div
+                data-testid="container"
+                className={styles[!isBelowTreshold ? "container" : "container-mobile"]}
+            >
+                <div className={styles[!isBelowTreshold ? "time" : "time-mobile"]}>
+                    <h1 className={styles[!isBelowTreshold ? "current-time" : "current-time-mobile"]}>
+                        Time elapsed: {new Date(elapsedTime).toISOString().substring(11, 19)}
                     </h1>
-                    {
-                        isActive
-                            ? <p className={styles["time-passed"]}> {secondsPassed}</p>
-                            : null
-                    }
-
                 </div>
-                <div data-testid="buttons-container" className={styles["buttons-container"]}>
-                    <button data-testid='start' className={styles["start"]} disabled={statusRef.current === "Start"} onClick={() => handleStart()}>
-                        {
-                            now !== null
-                                ?
-                                statusRef.current === "Start"
-                                    ? "Start"
-                                    : "Restart"
-                                :
-                                "Start"
+                <div
+                    data-testid="buttons-container"
+                    className={styles[!isBelowTreshold ? "buttons-container" : "buttons-container-mobile"]}
+                >
+                    <div
+                        className={
+                            styles[
+                                !isBelowTreshold
+                                    ? "buttons-inner-container"
+                                    : "buttons-inner-container-mobile"
+                            ]
                         }
-                    </button>
+                    >
+                        <button
+                            data-testid="start"
+                            className={styles["start"]}
+                            disabled={isActive}
+                            onClick={handleStart}
+                        >
+                            {!isBelowTreshold ? (
+                                "Start"
+                            ) : (
+                                <PlayArrow htmlColor="green" style={{ fontSize: "2rem" }} />
+                            )}
+                        </button>
 
-                    <button data-testid='stop' className={styles["stop"]} disabled={!isActive} onClick={() => [handleStop(), setIsactive(sate => false)]}>Stop</button>
-                    {
-                        !isActive
-                            ?
-                            now !== null
-                                ? <button data-testid='clear' className={styles["clear"]} disabled={now === null} onClick={() => handleClear()}>Clear</button>
-                                : null
-                            :
-                            null
-                    }
+                        <button
+                            data-testid="stop"
+                            className={styles["stop"]}
+                            disabled={!isActive}
+                            onClick={handleStop}
+                        >
+                            {!isBelowTreshold ? (
+                                "Stop"
+                            ) : (
+                                <Stop htmlColor="red" style={{ fontSize: "2rem" }} />
+                            )}
+                        </button>
+                        {statusRef.current === "Stop" ? (
+                            <button data-testid="clear" className={styles["clear"]} onClick={handleClear}>
+                                {!isBelowTreshold ? (
+                                    "Clear"
+                                ) : (
+                                    <Clear htmlColor="lightblue" style={{ fontSize: "2rem" }} />
+                                )}
+                            </button>
+                        ) : null}
+                    </div>
                 </div>
             </div>
         </section>
     );
-}
+};
