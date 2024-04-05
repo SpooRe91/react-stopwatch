@@ -74,6 +74,8 @@ export const StopwatchComponent = () => {
                         }
                     >
                         <button
+                            aria-label="Start"
+                            title="Start"
                             data-testid="start"
                             className={styles["start"]}
                             disabled={isActive}
@@ -87,6 +89,8 @@ export const StopwatchComponent = () => {
                         </button>
 
                         <button
+                            aria-label="Stop"
+                            title="Stop"
                             data-testid="stop"
                             className={styles["stop"]}
                             disabled={!isActive}
@@ -99,7 +103,13 @@ export const StopwatchComponent = () => {
                             )}
                         </button>
                         {statusRef.current === "Stop" ? (
-                            <button data-testid="clear" className={styles["clear"]} onClick={handleClear}>
+                            <button
+                                aria-label="CLear"
+                                title="Clear"
+                                data-testid="clear"
+                                className={styles["clear"]}
+                                onClick={handleClear}
+                            >
                                 {!isBelowTreshold ? (
                                     "Clear"
                                 ) : (
