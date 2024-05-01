@@ -73,21 +73,22 @@ export const StopwatchComponent = () => {
                             ]
                         }
                     >
-                        <button
-                            aria-label="Start"
-                            title="Start"
-                            data-testid="start"
-                            className={styles["start"]}
-                            disabled={isActive}
-                            onClick={handleStart}
-                        >
-                            {!isBelowTreshold ? (
-                                "Start"
-                            ) : (
-                                <PlayArrow htmlColor="green" style={{ fontSize: "2rem" }} />
-                            )}
-                        </button>
-
+                        {!isActive ? (
+                            <button
+                                aria-label="Start"
+                                title="Start"
+                                data-testid="start"
+                                className={styles["start"]}
+                                disabled={isActive}
+                                onClick={handleStart}
+                            >
+                                {!isBelowTreshold ? (
+                                    "Start"
+                                ) : (
+                                    <PlayArrow htmlColor="green" style={{ fontSize: "2rem" }} />
+                                )}
+                            </button>
+                        ) : null}
                         <button
                             aria-label="Stop"
                             title="Stop"
